@@ -1,6 +1,7 @@
 package com.jc.calculatorRunner;
 
 import com.jc.calcutlatorCore.CalculatorCore;
+import com.jc.calcutlatorCore.CalculatorCoreImpl;
 import com.jc.input.InputHandler;
 import com.jc.input.InputHandlerImpl;
 import com.jc.output.OutputHandler;
@@ -43,7 +44,7 @@ public class CalculatorRunner {
 
     private void initializeComponents(){
         inputHandler=new InputHandlerImpl();
-        calculatorCore=new CalculatorCore();
+        calculatorCore=new CalculatorCoreImpl();
         outputHandler=new OutputHandlerImpl();
     }
 

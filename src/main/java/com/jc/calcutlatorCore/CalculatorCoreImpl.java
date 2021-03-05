@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class CalculatorCore {
+public class CalculatorCoreImpl implements CalculatorCore {
 
     /*
     * Number of items in Each order
