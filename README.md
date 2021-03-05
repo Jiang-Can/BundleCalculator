@@ -1,11 +1,11 @@
-#Bundle Calculator
+##Bundle Calculator
 
-## Context
+### Context
 One company has decided to allow social media influencers 
 to sell posts in bundles and charge the brand on a per bundle basis. 
 It needs to design the project to be able to sell with the smallest number of bundles in each order.
 
-## Design ideas
+### Design ideas
 The project designed three major components, namely CalculatorCore, InputHandler and OutputHandler.
 
 InputHandler is responsible for reading the order information in the input.txt file under the resource file, 
@@ -19,22 +19,22 @@ OutputHandler buildOutputStr method receives processed bundle combination List f
 and corresponding Format object to build output string. Lastly, call the outputResult method to output
 result on console
 
-### InputHandler
+#### InputHandler
 It uses two HashMap to store the required submission format(order information) from input.txt and  
 company provided bundle choose(submission formats) from bundles.json file separately. Since they are
 multiple type of format, both HashMap use format code as key to match the input and corresponding format object.
-### CalculatorCore
+#### CalculatorCore
 Adopting greedy algorithm to  give priority to match the larger bundle, in this case, it can promise that the 
 minimal number of bundle combination which satisfied total required number could be found firstly. After found,
 the process terminate. Cache is involved to solve the repeated recursion problem. However, there is a bad situation that
 bundles choices provided by the company may not exactly match the number of total, so I design a second algorithm to match
 the most the biggest bundle as much as possible also with the minimal overage.
-### OutputHandler
+#### OutputHandler
 Since it may contain multiple kinds of submission format in order, so I design to iteratively assemble the every kind of submission format output string 
 in a StringBuilder, and output eventually. 
 
-## User manual
-###Configuration of bundles specs
+### User manual
+####Configuration of bundles specs
 Company can config the bundles specs in json style 
 (including submission format`name`, format code`code`,bundles`bundles` with map provided number`key`,corresponding price`value`)
 
@@ -64,7 +64,7 @@ Example of bundles specs configuration(multiple)
 ]
 ```
 
-###Input order
+####Input order
 Input the order in the format that `required number`+" "+`format code`
 in the file `input.txt` under resources directory.
 
@@ -74,7 +74,7 @@ Example of Input
 15 FLAC
 13 VID
 ```
-###Boot the calculator
+####Boot the calculator
 Only need to new an instance of Calculator Runner and call the runCalculator() method
 
 Example
