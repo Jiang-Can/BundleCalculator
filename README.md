@@ -34,7 +34,9 @@ Since it may contain multiple kinds of submission format in order, so I design t
 in a StringBuilder, and output eventually. 
 
 ## User manual
+
 ###Configuration of bundles specs
+
 Company can config the bundles specs in json style 
 (including submission format`name`, format code`code`,bundles`bundles` with map provided number`key`,corresponding price`value`)
 
@@ -65,6 +67,7 @@ Example of bundles specs configuration(multiple)
 ```
 
 ###Input order
+
 Input the order in the format that `required number`+" "+`format code`
 in the file `input.txt` under resources directory.
 
@@ -75,6 +78,7 @@ Example of Input
 13 VID
 ```
 ###Boot the calculator
+
 Only need to new an instance of Calculator Runner and call the runCalculator() method
 
 Example
