@@ -6,14 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Format {
-    private String name;
-    private String code;
-    private HashMap<Integer,BigDecimal> bundles;
+public class Invoice {
+    private String invoiceId;
+    private int quantity;
+    private BigDecimal subTotal;
 }

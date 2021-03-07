@@ -1,49 +1,66 @@
 package com.jc.input;
 
-
+import com.jc.UserCentre.NewUser;
 import com.jc.bean.Format;
+import com.jc.utils.Utils;
+import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
-/*
-* The user of this interface can convert the data in bundles configuration file
-* and input file to the form which can be processed by Calculator Core and
-* provide necessary data for the output component
-*
-* */
-public interface InputHandler {
+@Data
+public class InputHandler {
 
-    /**
-     * @param code string of code
-     * @return corresponding format
-     */
-    Format getFormatByFormatCode(String code);
+    private static final String jsonFileName="bundles.json";
 
-    /**
-     * read file from input so as to get all the submission formats which are required to be processed
-     * @return a String array contains all needed format code in order(input file)
-     */
-    String[] getAllInputFormatCodes();
+    private static final String inputFileName="input.txt";
 
-    /**
-     * @param code string of code
-     * @return An integer array contains all kinds of bundle relate to the format code provided in param
-     */
-    Integer[] getBundlesArrayByFormatCode(String code);
+    private HashMap<String,Format> formats;
 
-    /**
-     * @param code string of code
-     * @return An HashMap contains the specification of bundles related to this code,
-     * I.e.The item provides the size of the bundles and the corresponding price
-     */
-    HashMap<Integer, BigDecimal> getBundlesSpecsByFormatCode(String code);
+    private HashMap<String,Integer> inputs;
 
-    /**
-     * @param code string of code
-     * @return the number of items according to the format code provided in param
-     */
-    int getTotalByFormatCode(String code);
+    private NewUser user;
 
+    public InputHandler(NewUser user){
+        this.user=user;
+        initializeData();
+    }
+
+    public Integer[] getBundlesArrayByFormatCode(String code){
+        return formats.get(code).getBundles().keySet().toArray(new Integer[0]);
+    }
+
+    public int getTotalByFormatCode(String code){
+        return inputs.get(code);
+    }
+
+    public String[] getAllInputFormatCodes(){
+        return inputs.keySet().toArray(new String[0]);
+    }
+
+    public Format getFormatByFormatCode(String code){
+        return formats.get(code);
+    }
+
+    private void initializeData(){
+        setInputs();
+        setFormats();
+        setUserInputList();
+    }
+
+    private void setUserInputList(){
+        user.handleUserInput(inputs);
+    }
+
+    private void setFormats(){
+        formats=new HashMap<>();
+        Arrays.stream(Utils.JsonFileReader(jsonFileName)).forEach((format)-> formats.put(format.getCode(),format));
+    }
+    private void setInputs(){
+        inputs=Utils.inputFilerReader(inputFileName);
+    }
 
 }

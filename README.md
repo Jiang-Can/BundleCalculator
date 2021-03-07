@@ -19,6 +19,9 @@ OutputHandler buildOutputStr method receives processed bundle combination List f
 and corresponding Format object to build output string. Lastly, call the outputResult method to output
 result on console
 
+It can also provide a user object which includes its userId, orderId with corresponding orderList and invoiceId with corresponding,
+This object if mainly for providing data for DAO
+
 ### InputHandler
 It uses two HashMap to store the required submission format(order information) from input.txt and  
 company provided bundle choose(submission formats) from bundles.json file separately. Since they are
@@ -32,6 +35,10 @@ the most the biggest bundle as much as possible also with the minimal overage.
 ### OutputHandler
 Since it may contain multiple kinds of submission format in order, so I design to iteratively assemble the every kind of submission format output string 
 in a StringBuilder, and output eventually. 
+### NewUser
+This object store all data which need to be used in DAO.
+To use this data, you should call the getUser() method in CalculatorRunner.
+Remind , it can return all data only after invoke the runCalculator() method
 
 ## User manual
 

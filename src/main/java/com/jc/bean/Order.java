@@ -5,15 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Format {
-    private String name;
+public class Order {
+    private String orderId;
     private String code;
-    private HashMap<Integer,BigDecimal> bundles;
+    private int number;
 }
